@@ -1,5 +1,5 @@
 // Editable site content. Brand name shown in the nav, footer and page metadata.
-export const BRAND = "Qubiq";
+export const BRAND = "QUBIQ";
 
 export const NAV = [
   { id: "vision", label: "Vision" },
