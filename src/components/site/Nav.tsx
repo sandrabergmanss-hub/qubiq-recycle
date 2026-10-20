@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { BRAND, NAV } from "@/content/site";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Nav() {
@@ -22,7 +24,7 @@ export function Nav() {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-6 md:px-10">
-        <a href="#top" className="text-sm font-semibold tracking-tight">
+        <a href="#top" className="text-lg font-semibold">
           {BRAND}
         </a>
         <ul className="hidden gap-8 md:flex">
@@ -34,14 +36,15 @@ export function Nav() {
             </li>
           ))}
         </ul>
-        <button
-          className="eyebrow md:hidden"
+        <Button variant="ghost" size="icon"
+          className="md:hidden"
+          aria-label={open ? "Close navigation" : "Open navigation"}
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((o) => !o)}
         >
-          {open ? "Close" : "Menu"}
-        </button>
+          {open ? <X /> : <Menu />}
+        </Button>
       </nav>
       {open && (
         <ul id="mobile-nav" className="flex flex-col gap-1 px-6 pb-6 md:hidden">

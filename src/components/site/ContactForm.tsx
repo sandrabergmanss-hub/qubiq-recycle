@@ -1,4 +1,6 @@
 import { useState, type FormEvent } from "react";
+import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 import { CONTACT_ENDPOINT, INTEREST_OPTIONS } from "@/content/site";
 
 type State = "idle" | "sending" | "sent" | "error" | "unconfigured";
@@ -57,6 +59,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="grid gap-8 sm:grid-cols-2">
+      {!CONTACT_ENDPOINT && <p className="text-sm text-muted-foreground sm:col-span-2">Contact submissions are not connected yet. No messages can be delivered.</p>}
       <label className="block">
         <span className="eyebrow text-muted-foreground">Name</span>
         <input name="name" autoComplete="name" className={field} aria-invalid={!!errors.name} aria-describedby="name-err" />
@@ -89,13 +92,13 @@ export function ContactForm() {
         <Err k="message" />
       </label>
       <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
-        <button
+        <Button variant="editorial" size="editorial"
           type="submit"
           disabled={state === "sending"}
-          className="eyebrow bg-primary px-8 py-4 text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
+          className="self-start"
         >
           {state === "sending" ? "Sending…" : "Send message"}
-        </button>
+        <ArrowUpRight /></Button>
         <div aria-live="polite" className="text-sm">
           {state === "unconfigured" && (
             <p className="text-muted-foreground">
