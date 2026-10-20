@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { VIEWER_CONFIG } from "@/content/site";
-import roomImg from "@/assets/recycling-room.jpg";
 
 type Status = "idle" | "loading" | "ready" | "error";
 type Controls = { reset: () => void; zoom: (d: number) => void };
@@ -186,7 +185,6 @@ export function ConceptViewer() {
           </div>
         </>
       )}
-      <img src={roomImg} alt="" className="hidden" aria-hidden />
     </div>
   );
 }
