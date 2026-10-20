@@ -1,0 +1,110 @@
+import { useState, type FormEvent } from "react";
+import { CONTACT_ENDPOINT, INTEREST_OPTIONS } from "@/content/site";
+
+type State = "idle" | "sending" | "sent" | "error" | "unconfigured";
+type Errors = Partial<Record<"name" | "email" | "interest" | "message", string>>;
+
+const field =
+  "w-full border-0 border-b border-input bg-transparent py-3 text-base outline-none transition-colors focus:border-foreground";
+
+export function ContactForm() {
+  const [state, setState] = useState<State>("idle");
+  const [errors, setErrors] = useState<Errors>({});
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
+    const errs: Errors = {};
+    if (!data.name?.trim()) errs.name = "Please enter your name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email ?? "")) errs.email = "Please enter a valid email.";
+    if (!data.interest) errs.interest = "Please choose an area of interest.";
+    if ((data.message ?? "").trim().length < 10) errs.message = "Please write a short message.";
+    setErrors(errs);
+    if (Object.keys(errs).length) return;
+
+    if (!CONTACT_ENDPOINT) {
+      setState("unconfigured");
+      return;
+    }
+    setState("sending");
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      setState(res.ok ? "sent" : "error");
+    } catch {
+      setState("error");
+    }
+  }
+
+  if (state === "sent") {
+    return (
+      <div role="status" className="border-t border-foreground pt-8">
+        <p className="display text-3xl">Thank you.</p>
+        <p className="mt-3 text-muted-foreground">Your message has been received. We'll be in touch.</p>
+      </div>
+    );
+  }
+
+  const Err = ({ k }: { k: keyof Errors }) =>
+    errors[k] ? (
+      <p id={`${k}-err`} className="mt-2 text-sm text-destructive">
+        {errors[k]}
+      </p>
+    ) : null;
+
+  return (
+    <form onSubmit={onSubmit} noValidate className="grid gap-8 sm:grid-cols-2">
+      <label className="block">
+        <span className="eyebrow text-muted-foreground">Name</span>
+        <input name="name" autoComplete="name" className={field} aria-invalid={!!errors.name} aria-describedby="name-err" />
+        <Err k="name" />
+      </label>
+      <label className="block">
+        <span className="eyebrow text-muted-foreground">Organization</span>
+        <input name="organization" autoComplete="organization" className={field} />
+      </label>
+      <label className="block">
+        <span className="eyebrow text-muted-foreground">Work email</span>
+        <input name="email" type="email" autoComplete="email" className={field} aria-invalid={!!errors.email} aria-describedby="email-err" />
+        <Err k="email" />
+      </label>
+      <label className="block">
+        <span className="eyebrow text-muted-foreground">Area of interest</span>
+        <select name="interest" defaultValue="" className={field} aria-invalid={!!errors.interest} aria-describedby="interest-err">
+          <option value="" disabled>
+            Select…
+          </option>
+          {INTEREST_OPTIONS.map((o) => (
+            <option key={o}>{o}</option>
+          ))}
+        </select>
+        <Err k="interest" />
+      </label>
+      <label className="block sm:col-span-2">
+        <span className="eyebrow text-muted-foreground">Message</span>
+        <textarea name="message" rows={4} className={field} aria-invalid={!!errors.message} aria-describedby="message-err" />
+        <Err k="message" />
+      </label>
+      <div className="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
+        <button
+          type="submit"
+          disabled={state === "sending"}
+          className="eyebrow bg-primary px-8 py-4 text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
+        >
+          {state === "sending" ? "Sending…" : "Send message"}
+        </button>
+        <div aria-live="polite" className="text-sm">
+          {state === "unconfigured" && (
+            <p className="text-muted-foreground">
+              Message not sent — submissions aren't connected yet. Your details were not stored.
+            </p>
+          )}
+          {state === "error" && <p className="text-destructive">Something went wrong. Please try again.</p>}
+        </div>
+      </div>
+    </form>
+  );
+}
