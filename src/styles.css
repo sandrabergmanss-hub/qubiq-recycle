@@ -97,7 +97,7 @@
   --studio: oklch(0.935 0.008 85);
   --charcoal: oklch(0.23 0.006 160);
   --shadow-studio: 0 25px 36px -20px color-mix(in oklab, var(--charcoal) 25%, transparent);
-  --gradient-veil: linear-gradient(180deg, color-mix(in oklab, var(--ink) 35%, transparent) 0%, transparent 35%, color-mix(in oklab, var(--ink) 75%, transparent) 100%);
+  --gradient-veil: linear-gradient(180deg, color-mix(in oklab, var(--ink) 40%, transparent) 0%, color-mix(in oklab, var(--ink) 38%, transparent) 35%, color-mix(in oklab, var(--ink) 75%, transparent) 100%);
   --ease-film: cubic-bezier(0.22, 1, 0.36, 1);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
