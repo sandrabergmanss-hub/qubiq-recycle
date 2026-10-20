@@ -13,16 +13,17 @@ import dusk from "@/assets/stockholm-dusk.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Reimagining how Stockholm recycles — a concept" },
+      { title: "Qubiq — a recycling concept for Stockholm" },
       {
         name: "description",
         content:
-          "An emerging vision for smarter, more space-conscious recycling in Stockholm's residential buildings. A concept open to investors, the city and partners.",
+          "Qubiq is an emerging vision for smarter, more space-conscious recycling in Stockholm's residential buildings. A concept open to investors, the city and partners.",
       },
-      { property: "og:title", content: "A better future is built into the everyday" },
+      { property: "og:title", content: "Qubiq — a better future is built into the everyday" },
       {
         property: "og:description",
-        content: "A concept for space-conscious recycling in Stockholm's shared residential spaces.",
+        content:
+          "Qubiq is a concept for space-conscious recycling in Stockholm's shared residential spaces.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

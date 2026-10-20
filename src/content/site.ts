@@ -1,5 +1,5 @@
-// Editable site content. Brand name is a placeholder until confirmed.
-export const BRAND = "[Project Name]";
+// Editable site content. Brand name shown in the nav, footer and page metadata.
+export const BRAND = "Qubiq";
 
 export const NAV = [
   { id: "vision", label: "Vision" },
