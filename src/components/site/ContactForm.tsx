@@ -15,10 +15,10 @@ export function ContactForm() {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
     const errs: Errors = {};
-    if (!data.name?.trim()) errs.name = "Please enter your name.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email ?? "")) errs.email = "Please enter a valid email.";
-    if (!data.interest) errs.interest = "Please choose an area of interest.";
-    if ((data.message ?? "").trim().length < 10) errs.message = "Please write a short message.";
+    if (!data["name"]?.trim()) errs.name = "Please enter your name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data["email"] ?? "")) errs.email = "Please enter a valid email.";
+    if (!data["interest"]) errs.interest = "Please choose an area of interest.";
+    if ((data["message"] ?? "").trim().length < 10) errs.message = "Please write a short message.";
     setErrors(errs);
     if (Object.keys(errs).length) return;
 
