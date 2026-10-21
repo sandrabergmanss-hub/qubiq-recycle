@@ -57,7 +57,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="grid gap-8 sm:grid-cols-2">
-      {!CONTACT_ENDPOINT && <p className="text-sm text-muted-foreground sm:col-span-2">Contact submissions are not connected yet. No messages can be delivered.</p>}
+      <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" defaultValue="" />
       <label className="block">
         <span className="eyebrow text-muted-foreground">Name</span>
         <input name="name" autoComplete="name" className={field} aria-invalid={!!errors.name} aria-describedby="name-err" />
@@ -98,12 +98,9 @@ export function ContactForm() {
           {state === "sending" ? "Sending…" : "Send message"}
         <ArrowUpRight /></Button>
         <div aria-live="polite" className="text-sm">
-          {state === "unconfigured" && (
-            <p className="text-muted-foreground">
-              Message not sent — submissions aren't connected yet. Your details were not stored.
-            </p>
+          {state === "error" && (
+            <p className="text-destructive">Your message could not be sent. Please try again in a moment.</p>
           )}
-          {state === "error" && <p className="text-destructive">Something went wrong. Please try again.</p>}
         </div>
       </div>
     </form>
