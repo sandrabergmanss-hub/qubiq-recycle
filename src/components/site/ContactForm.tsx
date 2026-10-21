@@ -1,9 +1,11 @@
 import { useState, type FormEvent } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
-import { CONTACT_ENDPOINT, INTEREST_OPTIONS } from "@/content/site";
+import { INTEREST_OPTIONS } from "@/content/site";
+import { sendContactMessage } from "@/lib/contact.functions";
 
-type State = "idle" | "sending" | "sent" | "error" | "unconfigured";
+type State = "idle" | "sending" | "sent" | "error";
 type Errors = Partial<Record<"name" | "email" | "interest" | "message", string>>;
 
 const field =
@@ -12,29 +14,25 @@ const field =
 export function ContactForm() {
   const [state, setState] = useState<State>("idle");
   const [errors, setErrors] = useState<Errors>({});
+  const send = useServerFn(sendContactMessage);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
     const errs: Errors = {};
     if (!data["name"]?.trim()) errs.name = "Please enter your name.";
+    else if (data["name"].length > 100) errs.name = "Please keep your name under 100 characters.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data["email"] ?? "")) errs.email = "Please enter a valid email.";
     if (!data["interest"]) errs.interest = "Please choose an area of interest.";
-    if ((data["message"] ?? "").trim().length < 10) errs.message = "Please write a short message.";
+    const msg = (data["message"] ?? "").trim();
+    if (msg.length < 10) errs.message = "Please write a short message.";
+    else if (msg.length > 5000) errs.message = "Please keep your message under 5000 characters.";
     setErrors(errs);
     if (Object.keys(errs).length) return;
 
-    if (!CONTACT_ENDPOINT) {
-      setState("unconfigured");
-      return;
-    }
     setState("sending");
     try {
-      const res = await fetch(CONTACT_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const res = await send({ data });
       setState(res.ok ? "sent" : "error");
     } catch {
       setState("error");
