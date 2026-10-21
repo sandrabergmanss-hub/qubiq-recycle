@@ -1,6 +1,9 @@
 // Editable site content. Brand name shown in the nav, footer and page metadata.
 export const BRAND = "Qubiq Recycle";
 
+// Public contact address, also the recipient of contact form submissions.
+export const CONTACT_EMAIL = "contact@qubiqrecycle.com";
+
 export const NAV = [
   { id: "concept", label: "The Concept" },
   { id: "vision", label: "The Challenge" },

@@ -1,8 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { INTEREST_OPTIONS } from "@/content/site";
+import { CONTACT_EMAIL, INTEREST_OPTIONS } from "@/content/site";
 
-const RECIPIENT = "qubiqrecycle@gmail.com";
+const RECIPIENT = CONTACT_EMAIL;
 const GATEWAY_URL = "https://connector-gateway.lovable.dev/google_mail/gmail/v1";
 
 const oneLine = (max: number) =>

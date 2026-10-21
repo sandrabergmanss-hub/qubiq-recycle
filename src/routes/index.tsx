@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import { BRAND, NAV, COPY, STEPS, AUDIENCES } from "@/content/site";
+import { BRAND, NAV, COPY, STEPS, AUDIENCES, CONTACT_EMAIL } from "@/content/site";
 import { Nav } from "@/components/site/Nav";
 import { Reveal } from "@/components/site/Reveal";
 import { ConceptViewer } from "@/components/site/ConceptViewer";
@@ -238,6 +238,9 @@ function Index() {
             <SectionLabel n="07">Contact</SectionLabel>
             <h2 className="display mt-8 text-5xl">Let's talk.</h2>
             <p className="mt-6 text-muted-foreground">Tell us a little about yourself and how you'd like to be involved.</p>
+            <p className="mt-6">
+              <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-4 hover:opacity-70">{CONTACT_EMAIL}</a>
+            </p>
           </Reveal>
           <Reveal className="lg:col-span-8" delay={150}>
             <ContactForm />
@@ -251,6 +254,7 @@ function Index() {
           <div>
             <p className="text-lg font-semibold">{BRAND}</p>
             <p className="mt-3 max-w-xs opacity-70">Exploring better-designed everyday recycling for Stockholm.</p>
+            <a href={`mailto:${CONTACT_EMAIL}`} className="mt-3 inline-block opacity-70 hover:opacity-100">{CONTACT_EMAIL}</a>
           </div>
           <ul className="flex flex-wrap gap-x-8 gap-y-3">
             {NAV.map((n) => (
