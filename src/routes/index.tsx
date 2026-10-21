@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import { BRAND, NAV, COPY, STEPS, AUDIENCES } from "@/content/site";
+import { BRAND, NAV, COPY, STEPS, AUDIENCES, CONTACT_EMAIL } from "@/content/site";
 import { Nav } from "@/components/site/Nav";
 import { Reveal } from "@/components/site/Reveal";
 import { ConceptViewer } from "@/components/site/ConceptViewer";
