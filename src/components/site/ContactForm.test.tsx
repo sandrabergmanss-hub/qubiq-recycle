@@ -6,7 +6,6 @@ vi.mock("@tanstack/react-start", () => ({ useServerFn: () => sendMock }));
 vi.mock("@/lib/contact.functions", () => ({ sendContactMessage: {} }));
 
 import { ContactForm } from "./ContactForm";
-import { contactSchema } from "@/lib/contact.functions";
 
 afterEach(() => sendMock.mockReset());
 
@@ -31,4 +30,3 @@ it("sends name, email and message and shows success", async () => {
   expect(await screen.findByText("Thank you.")).toBeTruthy();
 });
 
-void contactSchema;
