@@ -188,8 +188,8 @@
 
 .studio-volume { width: 88px; height: 144px; border: 1px solid color-mix(in oklab, var(--primary) 35%, transparent); background: var(--card); box-shadow: var(--shadow-studio); transform: skewY(-5deg); }
 .studio-volume::after { content: ""; position: absolute; inset: 10px -13px -10px auto; width: 12px; border: 1px solid color-mix(in oklab, var(--primary) 25%, transparent); background: var(--studio); transform: skewY(36deg); }
-.hero-frame { height: calc(100svh - 36px); min-height: 620px; max-height: 1000px; }
-@media (max-width: 640px) { .hero-frame { min-height: 700px; max-height: none; } }
+.hero-frame { height: calc(85svh - 36px); min-height: 540px; max-height: 780px; }
+@media (max-width: 640px) { .hero-frame { height: calc(85svh - 36px); min-height: 520px; max-height: 700px; } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

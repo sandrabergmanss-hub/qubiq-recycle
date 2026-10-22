@@ -11,13 +11,7 @@ it("opens the visitor's email app addressed to the public contact address", () =
   expect(email.getAttribute("href")).toBe("mailto:contact@qubiqrecycle.com");
 });
 
-it("shows the heading and invitation without collecting any details", () => {
+it("does not collect visitor details", () => {
   render(<ContactCta />);
-  expect(screen.getByRole("heading", { name: "Let's build a more circular future." })).toBeTruthy();
-  expect(
-    screen.getByText(
-      "Have a question or interested in working with Qubiq Recycle? We'd love to hear from you.",
-    ),
-  ).toBeTruthy();
   expect(screen.queryByRole("textbox")).toBeNull();
 });

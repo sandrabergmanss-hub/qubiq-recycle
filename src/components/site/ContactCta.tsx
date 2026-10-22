@@ -12,7 +12,7 @@ const contact = COPY.contact ?? FALLBACK;
 export function ContactCta() {
   return (
     <div className="max-w-3xl">
-      <h2 className="display text-5xl md:text-7xl">{contact.title}</h2>
+      <h2 id="contact-heading" className="display text-5xl md:text-7xl">{contact.title}</h2>
       {contact.description ? (
         <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground">
           {contact.description}
