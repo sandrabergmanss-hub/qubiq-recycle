@@ -9,6 +9,6 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Editable site copy, brand, contact endpoint, narrative lists and 3D viewer configuration live in src/content/site.ts so updates do not require layout changes.
+- Editable site copy, brand, public contact address, narrative lists and 3D viewer configuration live in src/content/site.ts so updates do not require layout changes.
 - Product display uses a user-activated Three.js viewer with a clearly labelled abstract fallback; load approved assets and normalize their bounds through the same viewer to preserve replaceability.
 - Viewer surface and material colors resolve semantic CSS tokens in the browser so the 3D presentation stays aligned with the site theme.

@@ -4,7 +4,7 @@ import { BRAND, NAV, COPY, STEPS, AUDIENCES, CONTACT_EMAIL } from "@/content/sit
 import { Nav } from "@/components/site/Nav";
 import { Reveal } from "@/components/site/Reveal";
 import { ConceptViewer } from "@/components/site/ConceptViewer";
-import { ContactForm } from "@/components/site/ContactForm";
+import { ContactCta } from "@/components/site/ContactCta";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import hero from "@/assets/hero-stockholm.jpg";
@@ -233,17 +233,12 @@ function Index() {
 
       {/* 9 CONTACT */}
       <section id="contact" className="bg-card py-28 md:py-40">
-        <div className="mx-auto grid max-w-[1440px] gap-16 px-6 md:px-10 lg:grid-cols-12">
-          <Reveal className="lg:col-span-4">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10">
+          <Reveal>
             <SectionLabel n="07">Contact</SectionLabel>
-            <h2 className="display mt-8 text-5xl">Let's talk.</h2>
-            <p className="mt-6 text-muted-foreground">Tell us a little about yourself and how you'd like to be involved.</p>
-            <p className="mt-6">
-              <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-4 hover:opacity-70">{CONTACT_EMAIL}</a>
-            </p>
           </Reveal>
-          <Reveal className="lg:col-span-8" delay={150}>
-            <ContactForm />
+          <Reveal delay={120}>
+            <ContactCta />
           </Reveal>
         </div>
       </section>
