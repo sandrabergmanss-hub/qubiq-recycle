@@ -12,3 +12,4 @@
 - Editable site copy, brand, public contact address, narrative lists and 3D viewer configuration live in src/content/site.ts so updates do not require layout changes.
 - Product display uses a user-activated Three.js viewer with a clearly labelled abstract fallback; load approved assets and normalize their bounds through the same viewer to preserve replaceability.
 - Viewer surface and material colors resolve semantic CSS tokens in the browser so the 3D presentation stays aligned with the site theme.
+- Homepage sections use matching content-driven navigation anchors, with the replaceable concept viewer embedded inside the development section so the narrative remains four sections.
