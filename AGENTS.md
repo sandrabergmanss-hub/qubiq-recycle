@@ -13,3 +13,4 @@
 - Product display uses a user-activated Three.js viewer with a clearly labelled abstract fallback; load approved assets and normalize their bounds through the same viewer to preserve replaceability.
 - Viewer surface and material colors resolve semantic CSS tokens in the browser so the 3D presentation stays aligned with the site theme.
 - Homepage navigation anchors remain content-driven; the viewer stays inside development, while longer narrative sections and a content-driven Explore the concept accordion preserve depth without crowding the main reading flow.
+- Explore the concept uses native details/summary disclosure controls so expandable reading works without a hook-based accordion dependency or client hydration.
