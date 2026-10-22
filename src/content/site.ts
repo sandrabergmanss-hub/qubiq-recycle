@@ -1,7 +1,7 @@
 // Editable site content. Brand name shown in the nav, footer and page metadata.
 export const BRAND = "Qubiq Recycle";
 
-// Public contact address, also the recipient of contact form submissions.
+// Public contact address shown on the site and the destination of the "Get in touch" email link.
 export const CONTACT_EMAIL = "contact@qubiqrecycle.com";
 
 export const NAV = [
@@ -12,18 +12,6 @@ export const NAV = [
   { id: "contact", label: "Contact" },
 ] as const;
 
-export const INTEREST_OPTIONS = [
-  "Investment",
-  "Municipal collaboration",
-  "Property or housing association",
-  "Product development",
-  "Pilot project",
-  "Other",
-] as const;
-
-// Set to a working endpoint (e.g. a form service URL) to activate submissions.
-// While null, the form validates input but clearly states it is not yet connected.
-export const CONTACT_ENDPOINT: string | null = null;
 
 // 3D viewer configuration. Replace `modelUrl` with an approved GLB/GLTF file.
 export const VIEWER_CONFIG = {
@@ -44,6 +32,7 @@ export const COPY = {
   shared: { title: "Considered for the spaces we share.", description: "Swedish apartment buildings and BRFs have real spatial constraints. The ambition is a machine considered for its footprint, ease of use and visual integration, alongside existing recycling arrangements." },
   stockholm: { title: "Small everyday moments. A bigger vision for Stockholm.", description: "From residential courtyards to the waterfront, thoughtful design can contribute to the quality of city life. Better everyday recycling is the ambition — not yet a proven outcome." },
   collaboration: { title: "Help shape the next chapter of urban recycling.", description: "We are exploring a new approach to everyday recycling and seeking conversations with partners who share the ambition to create better urban solutions." },
+  contact: { title: "Let's build a more circular future.", description: "Have a question or interested in working with Qubiq Recycle? We'd love to hear from you.", cta: "Get in touch" },
 };
 
 export const STEPS = [
